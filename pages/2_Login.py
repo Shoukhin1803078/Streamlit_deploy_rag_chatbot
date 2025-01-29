@@ -48,6 +48,7 @@ with st.form("login_form", clear_on_submit=True):
     if submit:
         if username and password:
             print(f"username == {username} pass=={password}")
+            print(f" verify credential === {verify_credentials(username, password)}")
             if verify_credentials(username, password):
                 st.session_state['logged_in'] = True
                 st.session_state['username'] = username
