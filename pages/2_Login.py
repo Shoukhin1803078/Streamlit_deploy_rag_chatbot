@@ -32,13 +32,37 @@ def nav_page(page_name, timeout_secs=3):
     components.html(nav_script)
 
 def verify_credentials(username, password):
-    df = pd.read_excel(EXCEL_FILE)
-    user_row = df[df['username'] == username]
-    print(user_row)
-    print(f"pass===={user_row['password'].iloc[0]}  and username ====={user_row['username'].iloc[0]}")
-    if user_row['password'].iloc[0] == password and user_row['username'].iloc[0] == username:
-        return True
-    return False
+    try:
+        df = pd.read_excel(EXCEL_FILE)
+        # Strip whitespace and convert to string
+        df['username'] = df['username'].astype(str).str.strip()
+        df['password'] = df['password'].astype(str).str.strip()
+        
+        # Clean input credentials
+        username = str(username).strip()
+        password = str(password).strip()
+        
+        # Get user row
+        user_row = df[df['username'] == username]
+        
+        if user_row.empty:
+            return False
+            
+        stored_password = user_row['password'].iloc[0]
+        stored_username = user_row['username'].iloc[0]
+        
+        # Debug prints
+        print(f"Input username: '{username}', stored username: '{stored_username}'")
+        print(f"Input password: '{password}', stored password: '{stored_password}'")
+        print(f"Username match: {username == stored_username}")
+        print(f"Password match: {password == stored_password}")
+        
+        # Simple equality check after cleaning
+        return username == stored_username and password == stored_password
+        
+    except Exception as e:
+        print(f"Error in verification: {str(e)}")
+        return False
 
 with st.form("login_form", clear_on_submit=True):
     username = st.text_input("Username")
@@ -47,8 +71,6 @@ with st.form("login_form", clear_on_submit=True):
     
     if submit:
         if username and password:
-            print(f"username == {username} pass=={password}")
-            print(f" verify credential === {verify_credentials(username, password)}")
             if verify_credentials(username, password):
                 st.session_state['logged_in'] = True
                 st.session_state['username'] = username
