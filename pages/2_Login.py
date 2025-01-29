@@ -51,11 +51,11 @@ def verify_credentials(username, password):
         stored_password = user_row['password'].iloc[0]
         stored_username = user_row['username'].iloc[0]
         
-        # Debug prints
-        print(f"Input username: '{username}', stored username: '{stored_username}'")
-        print(f"Input password: '{password}', stored password: '{stored_password}'")
-        print(f"Username match: {username == stored_username}")
-        print(f"Password match: {password == stored_password}")
+        # # Debug prints
+        # print(f"Input username: '{username}', stored username: '{stored_username}'")
+        # print(f"Input password: '{password}', stored password: '{stored_password}'")
+        # print(f"Username match: {username == stored_username}")
+        # print(f"Password match: {password == stored_password}")
         
         # Simple equality check after cleaning
         return username == stored_username and password == stored_password
