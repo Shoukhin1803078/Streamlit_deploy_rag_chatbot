@@ -7,9 +7,9 @@ from config import EXCEL_FILE
 st.set_page_config(page_title="User Credentials", page_icon="📊")
 
 # Check if user is logged in
-if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
-    st.error("Please login first!")
-    st.stop()
+# if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
+#     st.error("Please login first!")
+#     st.stop()
 
 # Page title
 st.title("User Credentials")
