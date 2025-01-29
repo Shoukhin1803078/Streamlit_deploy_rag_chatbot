@@ -35,7 +35,8 @@ def verify_credentials(username, password):
     df = pd.read_excel(EXCEL_FILE)
     user_row = df[df['username'] == username]
     print(user_row)
-    if not user_row.empty and user_row['password'].iloc[0] == password:
+    print(f"pass===={user_row['password'].iloc[0]}  and username ====={user_row['username'].iloc[0]}")
+    if not user_row.empty and user_row['password'].iloc[0] == password and user_row['password'].iloc[0] == username:
         return True
     return False
 
