@@ -34,6 +34,7 @@ def nav_page(page_name, timeout_secs=3):
 def verify_credentials(username, password):
     df = pd.read_excel(EXCEL_FILE)
     user_row = df[df['username'] == username]
+    print(user_row)
     if not user_row.empty and user_row['password'].iloc[0] == password:
         return True
     return False
@@ -45,6 +46,7 @@ with st.form("login_form", clear_on_submit=True):
     
     if submit:
         if username and password:
+            print(f"username == {username} pass=={password}")
             if verify_credentials(username, password):
                 st.session_state['logged_in'] = True
                 st.session_state['username'] = username
