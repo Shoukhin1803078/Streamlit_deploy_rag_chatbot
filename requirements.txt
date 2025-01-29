@@ -1,2 +1,9 @@
-pip install streamlit pandas openpyxl openai
-pip install streamlit pandas openpyxl openai langchain langchain-openai langchain-community faiss-cpu pypdf
+streamlit 
+pandas 
+openpyxl 
+openai 
+langchain 
+langchain-openai 
+langchain-community 
+faiss-cpu 
+pypdf
