@@ -36,7 +36,7 @@ def verify_credentials(username, password):
     user_row = df[df['username'] == username]
     print(user_row)
     print(f"pass===={user_row['password'].iloc[0]}  and username ====={user_row['username'].iloc[0]}")
-    if user_row['password'].iloc[0] == password and user_row['password'].iloc[0] == username:
+    if user_row['password'].iloc[0] == password and user_row['username'].iloc[0] == username:
         return True
     return False
 
